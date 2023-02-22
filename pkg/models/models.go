@@ -14,3 +14,24 @@ type Snippet struct {
 	Created time.Time
 	Expires time.Time
 }
+
+type Ingredient struct {
+	Ing_id           int
+	Ing_name         string
+	Quantity         int
+	QuantityType     string
+	Price            int
+	PriceForQunatity float32
+	Tag              string
+	Remains          int
+}
+
+type Receipt struct {
+	Rec_id           int
+	Name             string
+	Quantity         int
+	QuantityType     string
+	Price            int
+	PriceForQunatity float32
+	Tag              string
+}

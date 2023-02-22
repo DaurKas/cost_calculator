@@ -17,6 +17,7 @@ type application struct {
 	errorLog      *log.Logger
 	infoLog       *log.Logger
 	snippets      *mysql.SnippetModel
+	ingredients   *mysql.IngredientModel
 	templateCache map[string]*template.Template
 }
 
@@ -51,7 +52,7 @@ func main() {
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 
-	dsn := flag.String("dsn", "web:hadesOP99@/snippetbox?parseTime=true", "Название MySQL источника данных")
+	dsn := flag.String("dsn", "web:hadesOP99@/receiptbook", "Название MySQL источника данных")
 	addr := flag.String("addr", ":4000", "Сетевой адрес HTTP")
 	flag.Parse()
 
@@ -69,7 +70,7 @@ func main() {
 	app := &application{
 		errorLog:      errorLog,
 		infoLog:       infoLog,
-		snippets:      &mysql.SnippetModel{DB: db},
+		ingredients:   &mysql.IngredientModel{DB: db},
 		templateCache: templateCache,
 	}
 

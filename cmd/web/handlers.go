@@ -24,6 +24,21 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		Snippets: s,
 	})
 }
+func (app *application) ShowIngredients(w http.ResponseWriter, r *http.Request) {
+	i, err := app.ingredients.GetIngredientList()
+	if err != nil {
+		if errors.Is(err, models.ErrNoRecord) {
+			app.notFound(w)
+		} else {
+			app.serverError(w, err)
+		}
+		return
+	}
+
+	app.render(w, r, "ingredientList.page.tmpl", &templateData{
+		Ingredients: i,
+	})
+}
 
 func (app *application) showSnippet(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))

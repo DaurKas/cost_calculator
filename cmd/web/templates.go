@@ -7,8 +7,10 @@ import (
 )
 
 type templateData struct {
-	Snippet  *models.Snippet
-	Snippets []*models.Snippet
+	Snippet     *models.Snippet
+	Snippets    []*models.Snippet
+	Ingredient  *models.Ingredient
+	Ingredients []*models.Ingredient
 }
 
 func newTemplateCache(dir string) (map[string]*template.Template, error) {

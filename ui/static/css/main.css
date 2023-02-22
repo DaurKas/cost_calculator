@@ -1,7 +1,6 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
     font-size: 18px;
     font-family: "Ubuntu Mono", monospace;
 }
@@ -18,7 +17,7 @@ body {
 }
 
 header, nav, main, footer {
-    padding: 2px calc((100% - 800px) / 2) 0;
+    padding: 0;
 }
 
 main {
@@ -105,7 +104,7 @@ nav form {
 }
 
 nav div {
-    width: 50%;
+    width: 80%;
     float: left;
 }
 
@@ -180,7 +179,7 @@ form input[type="text"], form input[type="password"], form input[type="email"] {
 }
 
 form input[type=text], form input[type="password"], form input[type="email"], textarea {
-    color: #6A6C6F;
+    color: #000000;
     background: #FFFFFF;
     border: 1px solid #E4E5E7;
     border-radius: 3px;
@@ -313,3 +312,19 @@ footer {
     color: #6A6C6F;
     text-align: center;
 }
+
+#IngredientList {
+    float: left;
+    display: block;
+    width: 40%;
+    margin: 2px;
+}
+#IngredientFormBlock {
+    float: left;
+    display: block;
+    width: 40%;
+    margin: 2px;
+}
+
+
+

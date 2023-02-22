@@ -1,7 +1,7 @@
 {{template "base" .}}
 
 {{define "title"}}Домашняя страница{{end}}
-
+{{template "IngredientForm" .}}
 {{define "main"}}
     <h2>Последние Заметки</h2>
     {{if .Snippets}}

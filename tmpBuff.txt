@@ -1,0 +1,9 @@
+padding: 2px calc((100% - 800px) / 2) 0;
+    padding: 2px calc((100% - 800px) / 2) 0;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: "Ubuntu Mono", monospace;
+}

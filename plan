@@ -1,0 +1,63 @@
+1) New DB: 
+    ingredients {
+        ing_id int
+        ing_name string
+        quantity int
+        quantityType string
+        price int
+        priceForQunatity float
+        tag string
+        remains int
+    }
+
+    CREATE TABLE ingredients (
+        id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(100) NOT NULL,
+        content TEXT NOT NULL,
+        quantity INT NOT NULL,
+        remains INT NOT NULL,
+        price INT NOT NULL,
+        priceForQunatity FLOAT(7, 2) NOT NULL,
+        tag VARCHAR(20),
+        quantityType VARCHAR(20)
+    );
+    name, content, quantity, remains, price, priceForQunatity, tag, quantityType
+
+    CREATE TABLE receipts (
+        id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(100) NOT NULL,
+        ingredients TEXT NOT NULL,
+        content TEXT NOT NULL,
+        resultQuantity INT NOT NULL,
+        price INT NOT NULL,
+        priceForQunatity FLOAT(7, 2) NOT NULL,
+        tag VARCHAR(20),
+        quantityType VARCHAR(20)
+    );
+    INSERT INTO ingredients(name, content, quantity, remains, price, priceForQunatity, tag, quantityType) VALUES (
+        'love3',
+        'secret love2 of Aida',
+        500,
+        100,
+        100,
+        1,
+        'medical',
+        'mg'
+    );
+
+    INSERT INTO receipts(name, ingredients, content, resultQuantity, price, priceForQunatity, tag, quantityType) VALUES (
+        'ULTRA LOVE',
+        'combo love',
+        'combo secret love of Aida',
+        100,
+        100,
+        2,
+        'medical',
+        'ml'
+    );
+
+    receipt {
+        rec_id int
+        ingredientsList string[]
+        total_price int
+    }

@@ -13,18 +13,29 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		app.notFound(w)
 		return
 	}
-
-	s, err := app.snippets.Latest()
-	if err != nil {
-		app.serverError(w, err)
-		return
-	}
-
-	app.render(w, r, "home.page.tmpl", &templateData{
-		Snippets: s,
-	})
 }
 func (app *application) ShowIngredients(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
+		// Call ParseForm() to parse the raw query and update r.PostForm and r.Form.
+		if err := r.ParseForm(); err != nil {
+			fmt.Fprintf(w, "ParseForm() err: %v", err)
+			return
+		}
+		//fmt.Fprintf(w, "Post from website! r.PostFrom = %v\n", r.PostForm)
+		name := r.FormValue("name")
+		price, _ := strconv.ParseFloat(r.FormValue("price"), 32)
+		quantity, _ := strconv.ParseFloat(r.FormValue("quantity"), 32)
+		description := r.FormValue("description")
+		IngrType := r.FormValue("type")
+		tag := r.FormValue("tag")
+		remain := quantity
+		priceForQunatity := price / quantity
+		id, err := app.ingredients.AddIngredient(name, description, float32(quantity), float32(remain), float32(price), float32(priceForQunatity), tag, IngrType)
+		fmt.Println(id, err)
+		//w.WriteHeader(303)
+		http.Redirect(w, r, "/ingredients", http.StatusSeeOther)
+	}
+
 	i, err := app.ingredients.GetIngredientList()
 	if err != nil {
 		if errors.Is(err, models.ErrNoRecord) {
@@ -34,6 +45,7 @@ func (app *application) ShowIngredients(w http.ResponseWriter, r *http.Request) 
 		}
 		return
 	}
+	fmt.Println("INGR LUST HANDLER ", r)
 
 	app.render(w, r, "ingredientList.page.tmpl", &templateData{
 		Ingredients: i,

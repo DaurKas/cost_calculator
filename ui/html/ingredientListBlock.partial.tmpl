@@ -1,0 +1,24 @@
+{{define "IngredientListBlock"}}
+  <body>
+    <div class="main-block">
+        {{if .Ingredients}}
+            <table>
+                <tr>
+                    <th>Название</th>
+                    <th>Цена</th>
+                    <th>Остаток</th>
+                    <th>Удельная цена</th>
+                </tr>
+            {{range .Ingredients}}
+                <tr>
+                    <td>{{.Ing_name}}</td>
+                    <td>{{.Price}}</td>
+                    <td>{{.Remains}}</td>
+                    <td>{{.PriceForQuantity}}</td>
+                </tr>
+            {{end}}
+            </table>   
+        {{end}}     
+    </div>
+  </body>
+{{end}}

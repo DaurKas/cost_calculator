@@ -316,14 +316,19 @@ footer {
 #IngredientList {
     float: left;
     display: block;
-    width: 40%;
-    margin: 2px;
+    width: 30%;
+    margin: 10px;
+    padding: 10px;
+    border: 20px ;
 }
 #IngredientFormBlock {
     float: left;
     display: block;
     width: 40%;
-    margin: 2px;
+    margin: 10px;
+    padding: 40px;
+    border: 20px ;
+
 }
 
 

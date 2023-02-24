@@ -14,9 +14,9 @@
         id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
         name VARCHAR(100) NOT NULL,
         content TEXT NOT NULL,
-        quantity INT NOT NULL,
-        remains INT NOT NULL,
-        price INT NOT NULL,
+        quantity FLOAT(7, 2) NOT NULL,
+        remains FLOAT(7, 2) NOT NULL,
+        price FLOAT(7, 2) NOT NULL,
         priceForQunatity FLOAT(7, 2) NOT NULL,
         tag VARCHAR(20),
         quantityType VARCHAR(20)
@@ -28,19 +28,19 @@
         name VARCHAR(100) NOT NULL,
         ingredients TEXT NOT NULL,
         content TEXT NOT NULL,
-        resultQuantity INT NOT NULL,
-        price INT NOT NULL,
+        resultQuantity FLOAT(7, 2) NOT NULL,
+        price FLOAT(7, 2) NOT NULL,
         priceForQunatity FLOAT(7, 2) NOT NULL,
         tag VARCHAR(20),
         quantityType VARCHAR(20)
     );
     INSERT INTO ingredients(name, content, quantity, remains, price, priceForQunatity, tag, quantityType) VALUES (
-        'love3',
-        'secret love2 of Aida',
-        500,
-        100,
-        100,
-        1,
+        'superLove',
+        'new ingr',
+        20,
+        24.1,
+        1000.034,
+        5.01,
         'medical',
         'mg'
     );

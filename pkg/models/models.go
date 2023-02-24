@@ -18,20 +18,20 @@ type Snippet struct {
 type Ingredient struct {
 	Ing_id           int
 	Ing_name         string
-	Quantity         int
+	Quantity         float32
 	QuantityType     string
-	Price            int
-	PriceForQunatity float32
+	Price            float32
+	PriceForQuantity float32
 	Tag              string
-	Remains          int
+	Remains          float32
 }
 
 type Receipt struct {
 	Rec_id           int
 	Name             string
-	Quantity         int
+	Quantity         float32
 	QuantityType     string
-	Price            int
+	Price            float32
 	PriceForQunatity float32
 	Tag              string
 }

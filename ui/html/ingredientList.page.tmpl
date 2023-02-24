@@ -2,16 +2,11 @@
 
 {{define "title"}}Ингредиенты{{end}}
 {{define "main"}}
-    <div class="IngredientMainContainer">
         <div id="IngredientList">
-            <h2 type="text">СПИСОК ИНГРЕДИЕНТОВ</h2>
-            <h2>ЛЮБОВЬ</h2>
-            <b>several spoons of hotness</b>
-            <h1>ATTENTION</h1>
-
+            {{template "IngredientListBlock" .}}
         </div>
+
         <div id="IngredientFormBlock">
             {{template "IngredientForm" .}}
         </div>
-    </div>
 {{end}}

@@ -1,20 +1,18 @@
 {{define "IngredientForm"}}
   <body>
     <div class="main-block">
-      <form action="/">
+      <form method="POST" action="/ingredients">
         <div class="title">
           <i class="fas fa-pencil-alt"></i> 
           <h2>Добавить ингредиент в базу данных</h2>
         </div>
         <div class="info">
           <input class="name" type="text" name="name" placeholder="Название">
-          <input type="text" name="name" placeholder="Количество">
-          <input type="text" name="name" placeholder="Цена">
-          <input type="text" name="name" placeholder="Описание">
-          <select>
-            <option value="gramm" selected>Граммы</option>
-            <option value="ml">Миллилитры</option>
-          </select>
+          <input type="text" name="quantity" placeholder="Количество">
+          <input type="text" name="price" placeholder="Цена">
+          <input type="text" name="description" value="Описание">
+          <input type="text" name="type" value="мг">
+          <input type="text" name="tag" value="Косметика">
         </div>
         <div class="checkbox">
         </div>

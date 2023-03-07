@@ -1,12 +1,12 @@
 {{template "base" .}}
 
-{{define "title"}}Домашняя страница{{end}}
+{{define "title"}}Рецепты{{end}}
 {{define "main"}}
         <div id="IngredientList">
             {{template "ReceiptListBlock" .}}
         </div>
 
         <div id="IngredientFormBlock">
-            {{template "IngredientListBlock" .}}
+            {{template "ReceiptForm" .}}
         </div>
 {{end}}

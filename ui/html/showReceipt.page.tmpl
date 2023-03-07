@@ -1,0 +1,25 @@
+{{template "base" .}}
+
+{{define "title"}}Рецпет{{end}}
+{{define "main"}}
+    {{with .Receipt}}
+    <div id="IngredientFormBlock">
+        <div class='metadata'>
+            <strong>{{.Name}}</strong>
+            <span>#{{.Rec_id}}</span>
+            <span>#{{.Quantity}}</span>
+            <span>#{{.Price}}</span>
+            <span>#{{.PriceForQuantity}}</span>
+        </div>
+        <pre><code>Хеллоу</code></pre>
+        <div class='metadata'>
+            <span>#{{.Tag}}</span>
+        </div>
+    </div>
+    {{end}}
+        <div id="IngredientList">
+            {{template "IngredientsForReceipt" .}}
+        </div>
+
+
+{{end}}

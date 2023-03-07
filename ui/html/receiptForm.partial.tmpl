@@ -1,0 +1,45 @@
+{{define "ReceiptForm"}}
+  <body>
+    <div class="main-block">
+      <form method="POST" action="/receipts">
+        <div class="title">
+          <i class="fas fa-pencil-alt"></i> 
+          <h2>Создание рецепта</h2>
+        </div>
+        <div class="info">
+          <input class="name" type="text" name="name" placeholder="Название">
+          <input type="text" name="quantity" placeholder="Количество">
+          <input type="text" name="description" value="Описание">
+          <input type="text" name="type" value="мг">
+          <input type="text" name="tag" value="Косметика">
+        </div>
+        <div class="main-block">
+            {{if .Ingredients}}
+            <table>
+                <tr>
+                    <th>Название</th>
+                    <th>Цена</th>
+                    <th>Остаток</th>
+                    <th>Удельная цена</th>
+                    <th>Нужное кол-во</th>
+                    <th>Включить в рецепт</th>
+
+                </tr>
+            {{range .Ingredients}}
+                <tr>
+                    <td>{{.Ing_name}}</td>
+                    <td>{{.Price}}</td>
+                    <td>{{.Remains}}</td>
+                    <td>{{.PriceForQuantity}}</td>
+                    <td><input name={{.Ing_id}} value=0></td>
+                    <td><input type="checkbox" name="ingredients" value={{.Ing_id}}></td>
+                </tr>
+            {{end}}
+            </table>   
+            {{end}}     
+        </div>
+        <button type="submit" href="/receipts">Добавить</button>
+    </form>
+    </div>
+  </body>
+{{end}}

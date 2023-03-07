@@ -32,6 +32,12 @@ type Receipt struct {
 	Quantity         float32
 	QuantityType     string
 	Price            float32
-	PriceForQunatity float32
+	PriceForQuantity float32
+	Ingredients      []Ingredient
 	Tag              string
+}
+
+type Requirenment struct {
+	Ingr     *Ingredient
+	Required float32
 }

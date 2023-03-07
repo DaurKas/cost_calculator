@@ -28,7 +28,7 @@
         name VARCHAR(100) NOT NULL,
         ingredients TEXT NOT NULL,
         content TEXT NOT NULL,
-        resultQuantity FLOAT(7, 2) NOT NULL,
+        quantity FLOAT(7, 2) NOT NULL,
         price FLOAT(7, 2) NOT NULL,
         priceForQunatity FLOAT(7, 2) NOT NULL,
         tag VARCHAR(20),
@@ -45,7 +45,7 @@
         'mg'
     );
 
-    INSERT INTO receipts(name, ingredients, content, resultQuantity, price, priceForQunatity, tag, quantityType) VALUES (
+    INSERT INTO receipts(name, ingredients, content, quantity, price, priceForQunatity, tag, quantityType) VALUES (
         'ULTRA LOVE',
         'combo love',
         'combo secret love of Aida',

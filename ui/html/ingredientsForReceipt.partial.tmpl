@@ -1,24 +1,26 @@
-{{define "IngredientListBlock"}}
+{{define "IngredientsForReceipt"}}
   <body>
     <div class="main-block">
         <div class="title">
           <i class="fas fa-pencil-alt"></i> 
           <h2>Список ингреиентов</h2>
         </div>
-        {{if .Ingredients}}
+        {{if .Requirenments}}
             <table>
                 <tr>
                     <th>Название</th>
                     <th>Цена</th>
                     <th>Остаток</th>
+                    <th>Необходимо</th>
                     <th>Удельная цена</th>
                 </tr>
-            {{range .Ingredients}}
+            {{range .Requirenments}}
                 <tr>
-                    <td>{{.Ing_name}}</td>
-                    <td>{{.Price}}</td>
-                    <td>{{.Remains}}</td>
-                    <td>{{.PriceForQuantity}}</td>
+                    <td>{{.Ingr.Ing_name}}</td>
+                    <td>{{.Ingr.Price}}</td>
+                    <td>{{.Ingr.Remains}}</td>
+                    <td>{{.Required}}</td>
+                    <td>{{.Ingr.PriceForQuantity}}</td>
                 </tr>
             {{end}}
             </table>   

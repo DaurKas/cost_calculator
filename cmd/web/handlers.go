@@ -13,6 +13,29 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		app.notFound(w)
 		return
 	}
+	i, err := app.ingredients.GetIngredientList()
+	if err != nil {
+		if errors.Is(err, models.ErrNoRecord) {
+			app.notFound(w)
+		} else {
+			app.serverError(w, err)
+		}
+		return
+	}
+	receipts, err := app.receipts.GetReceipts()
+	if err != nil {
+		if errors.Is(err, models.ErrNoRecord) {
+			app.notFound(w)
+		} else {
+			app.serverError(w, err)
+		}
+		return
+	}
+	app.render(w, r, "home.page.tmpl", &templateData{
+		Ingredients: i,
+		Receipts:    receipts,
+	})
+
 }
 func (app *application) ShowIngredients(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
@@ -49,6 +72,84 @@ func (app *application) ShowIngredients(w http.ResponseWriter, r *http.Request) 
 
 	app.render(w, r, "ingredientList.page.tmpl", &templateData{
 		Ingredients: i,
+	})
+}
+func (app *application) ShowReceipt(w http.ResponseWriter, r *http.Request) {
+	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+	fmt.Println("IN THE REC HANDLER ", id)
+	if err != nil || id < 1 {
+		app.notFound(w) // Страница не найдена.
+		return
+	}
+
+	rec, ingredients, reqMap, err := app.receipts.GetReceipt(id)
+	if err != nil {
+		if errors.Is(err, models.ErrNoRecord) {
+			app.notFound(w)
+		} else {
+			app.serverError(w, err)
+		}
+		return
+	}
+	var requirenments []*models.Requirenment
+	for _, ingr := range ingredients {
+		newReq := models.Requirenment{Ingr: ingr, Required: reqMap[strconv.Itoa(ingr.Ing_id)]}
+
+		requirenments = append(requirenments, &newReq)
+	}
+	app.render(w, r, "showReceipt.page.tmpl", &templateData{
+		Receipt:       rec,
+		Requirenments: requirenments,
+	})
+
+}
+func (app *application) ShowReceipts(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
+		if err := r.ParseForm(); err != nil {
+			fmt.Fprintf(w, "ParseForm() err: %v", err)
+			return
+		}
+		name := r.FormValue("name")
+		quantity, _ := strconv.ParseFloat(r.FormValue("quantity"), 32)
+		description := r.FormValue("description")
+		IngrType := r.FormValue("type")
+		tag := r.FormValue("tag")
+		ingredientList := r.Form["ingredients"]
+		ingrQuants := make(map[string]float32)
+		for _, ingr := range ingredientList {
+			quantFloatVal, _ := strconv.ParseFloat(r.FormValue(ingr), 32)
+			ingrQuants[ingr] = float32(quantFloatVal)
+		}
+		fmt.Print(r.Form)
+		id, err := app.receipts.AddReceipt(name, description, float32(quantity), tag, IngrType, ingredientList, ingrQuants)
+		fmt.Println(id, err)
+		http.Redirect(w, r, "/receipts", http.StatusSeeOther)
+	}
+
+	i, err := app.ingredients.GetIngredientList()
+	if err != nil {
+		if errors.Is(err, models.ErrNoRecord) {
+			app.notFound(w)
+		} else {
+			app.serverError(w, err)
+		}
+		return
+	}
+	receipts, err := app.receipts.GetReceipts()
+	fmt.Println("___________DEBUG____________", receipts)
+	if err != nil {
+		if errors.Is(err, models.ErrNoRecord) {
+			app.notFound(w)
+		} else {
+			app.serverError(w, err)
+		}
+		return
+	}
+	fmt.Println("INGR LUST HANDLER ", r)
+
+	app.render(w, r, "receiptMain.page.tmpl", &templateData{
+		Ingredients: i,
+		Receipts:    receipts,
 	})
 }
 

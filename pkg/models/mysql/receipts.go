@@ -152,3 +152,14 @@ func (m *ReceiptModel) GetReceipts() ([]*models.Receipt, error) {
 
 	return receipts, nil
 }
+
+func (m *ReceiptModel) DeleteReceipt(id int) error {
+	stmt := `DELETE FROM receipts WHERE id = ?;`
+
+	_, err := m.DB.Exec(stmt, id)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

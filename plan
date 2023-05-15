@@ -1,3 +1,10 @@
+CREATE DATABASE receiptbook CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+use receiptbook
+CREATE USER 'web'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON receiptbook.* TO 'web'@'localhost';
+ALTER USER 'web'@'localhost' IDENTIFIED BY 'MGTU_01grob';
+
+
 1) New DB: 
     ingredients {
         ing_id int

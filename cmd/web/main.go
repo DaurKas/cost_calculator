@@ -53,7 +53,7 @@ func main() {
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 
-	dsn := flag.String("dsn", "web:hadesOP99@/receiptbook", "Название MySQL источника данных")
+	dsn := flag.String("dsn", "web:MGTU_01grob@/receiptbook", "Название MySQL источника данных")
 	addr := flag.String("addr", ":4000", "Сетевой адрес HTTP")
 	flag.Parse()
 

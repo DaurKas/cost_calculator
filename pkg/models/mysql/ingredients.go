@@ -90,3 +90,54 @@ func (m *IngredientModel) GetIngredientList() ([]*models.Ingredient, error) {
 
 	return ingredients, nil
 }
+
+func (m *IngredientModel) AddQuantity(id int, addition float32) error {
+	stmt := `SELECT id, quantity FROM ingredients WHERE id = ?;`
+	updateStmt := `UPDATE ingredients SET quantity = ? WHERE id = ?;`
+	row := m.DB.QueryRow(stmt, id)
+	var quantity float32
+	err := row.Scan(&id, &quantity)
+	newQuantity := quantity + addition
+
+	if err != nil {
+		return err
+	}
+
+	_, err = m.DB.Exec(updateStmt, newQuantity, id)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *IngredientModel) SubstractQuantity(id int, substraction float32) error {
+	stmt := `SELECT id, quantity FROM ingredients WHERE id = ?;`
+	updateStmt := `UPDATE ingredients SET quantity = ? WHERE id = ?;`
+	row := m.DB.QueryRow(stmt, id)
+	var quantity float32
+	err := row.Scan(&id, &quantity)
+	newQuantity := quantity - substraction
+
+	if err != nil {
+		return err
+	}
+
+	_, err = m.DB.Exec(updateStmt, newQuantity, id)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *IngredientModel) DeleteIngredient(id int) error {
+	stmt := `DELETE FROM ingredients WHERE id = ?;`
+
+	_, err := m.DB.Exec(stmt, id)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
